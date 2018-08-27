@@ -7,4 +7,70 @@
 .wrapper {
   width: 80%;
   margin: 25px auto;
+  text-align: center;
+}
+
+nav {
+  margin-bottom: 50px;
+}
+
+nav ul {
+  margin: 10px 0px;
+  list-style: none;
+}
+
+nav ul li {
+  display: inline-block;
+  float: left;
+  background-color: whitesmoke;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+nav ul li a {
+  padding: 4px 12px;
+  text-decoration: none;
+  color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 4px 8px;
+  text-align: left;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+th, tr:nth-child(even) {
+  background-color: whitesmoke;
+}
+
+fieldset {
+  display: inline-block;
+  padding: 15px 25px;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+}
+
+input, select {
+  width: 300px;
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+button {
+  float: right;
+  padding: 4px 8px;
+  font-size: 1em;
+  background-color: whitesmoke;
+  border: 1px solid gray;
+  border-radius: 4px;
 }

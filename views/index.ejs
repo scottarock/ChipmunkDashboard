@@ -7,7 +7,35 @@
   </head>
   <body>
     <div class="wrapper">
-      <h1>Welcome to the Chipmunk Dashboard</h1>
+      <nav>
+        <h1>Welcome to the Chipmunk Dashboard</h1>
+        <ul>
+          <li><a href="/chipmunks/new">Add a Chipmunk</a></li>
+        </ul>
+        <hr>
+      </nav>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Favorite Nut</th>
+            <th>Hidden Treasure</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for ( chipmunk of chipmunks ) { %>
+            <tr>
+              <td><%= chipmunk.name %></td>
+              <td><%= chipmunk.age %></td>
+              <td><%= chipmunk.favoriteNut %></td>
+              <td><%= chipmunk.treasure %></td>
+              <td></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>

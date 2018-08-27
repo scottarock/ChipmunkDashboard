@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Add a Chipmunk</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <ul>
+          <li><a href="/">Dashboard</a></li>
+        </ul>
+        <hr>
+      </nav>
+      <fieldset>
+        <legend>Add a Chipmunk</legend>
+        <form action="/chipmunks" method="post">
+          <div>
+            <label for="name">Name</label>
+            <input type="text" name="name">
+          </div>
+          <div>
+            <label for="age">Age</label>
+            <input type="number" name="age">
+          </div>
+          <div>
+            <label for="favoriteNut">Favorite Nut</label>
+            <select name="favoriteNut">
+              <option value="acorn">Acorn</option>
+              <option value="peanut">Peanut</option>
+              <option value="walnut">Walnut</option>
+              <option value="cashew">Cashew</option>
+              <option value="goofy">Goofy</option>
+            </select>
+          </div>
+          <div>
+            <label for="treasure">Hidden Treasure</label>
+            <input type="text" name="treasure">
+          </div>
+          <button>Add Chiupmunk</button>
+        </form>
+      </fieldset>
+    </div>
+  </body>
+</html>
