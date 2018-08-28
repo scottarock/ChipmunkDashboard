@@ -33,6 +33,14 @@ nav ul li a {
   color: black;
 }
 
+nav button {
+  float: left;
+  padding: 0px 12px;
+  font-size: 1em;
+  background-color: whitesmoke;
+  border: none;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -47,6 +55,20 @@ th, td {
 
 th, tr:nth-child(even) {
   background-color: whitesmoke;
+}
+
+td form {
+  display: inline-block;
+}
+
+td a, td button {
+  padding: 1px 5px;
+  font-size: 1em;
+  text-decoration: none;
+  color: black;
+  background-color: gainsboro;
+  border: 1px solid black;
+  border-radius: 2px;
 }
 
 fieldset {
@@ -67,7 +89,7 @@ input, select {
   font-size: 1em;
 }
 
-button {
+fieldset button {
   float: right;
   padding: 4px 8px;
   font-size: 1em;

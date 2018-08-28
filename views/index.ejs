@@ -25,11 +25,15 @@
         <tbody>
           <% for ( chipmunk of chipmunks ) { %>
             <tr>
-              <td><a href="/chipmunks/<%= chipmunk.id %>">
-                <%= chipmunk.name %>
-              </a></td>
+              <td><%= chipmunk.name %></td>
               <td><%= chipmunk.age %></td>
-              <td><a href="/chipmunks/edit/<%= chipmunk.id %>">Edit</a></td>
+              <td>
+                <a href="/chipmunks/<%= chipmunk.id %>">View</a>
+                <a href="/chipmunks/edit/<%= chipmunk.id %>">Edit</a>
+                <form action="/chipmunks/destroy/<%= chipmunk.id %>" method="post">
+                  <button>Delete</button>
+                </form>
+              </td>
             </tr>
           <% } %>
         </tbody>

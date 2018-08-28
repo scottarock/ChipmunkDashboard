@@ -12,6 +12,9 @@
         <ul>
           <li><a href="/">Dashboard</a></li>
           <li><a href="/chipmunks/edit/<%= chipmunk.id %>">Edit</a></li>
+          <li><form action="/chipmunks/destroy/<%= chipmunk.id %>" method="post">
+            <button>Delete</button>
+          </form></li>
         </ul>
         <hr>
       </nav>

@@ -54,14 +54,19 @@ app.get('/', function(request, response) {
 
 // add a chipmunk page - shows form to create a chipmunk
 app.get('/chipmunks/new', function(request, response) {
+  // add handling for errors and entered data
+  // will also need to update view to show these
   response.render('chipmunks/new');
 });
 
 // add chipmunk submission route - creates new chipmunk and then goes to index
 app.post('/chipmunks', function(request, response) {
   Chipmunk.create(request.body)
-    .then(chipmunk => response.redirect('/'))
-    .catch(console.log);  // TODO: add validation error handling
+    .then(chipmunk => response.redirect(`/chipmunks/${ chipmunk.id }`))
+    // TODO: add validation error handling
+    // need to save error messages and data that was entered and
+    // redirect back to chipmunks/new route
+    .catch(console.log);
 });
 
 // show details about one chipmunk
@@ -78,18 +83,25 @@ app.get('/chipmunks/edit/:id', function(request, response) {
     .catch(console.log);
 });
 
+// edit a chipmunk submission route - update chipmunk data, then go to details
 app.post('/chipmunks/:id', function(request, response) {
   Chipmunk.findById(request.params.id)
     .then(chipmunk => {
       Object.keys(request.body).forEach(key => {
         chipmunk[key] = request.body[key];
       });
-      console.log(chipmunk);
       return chipmunk.save()
-        .then(response.redirect(`/chipmunks/${chipmunk.id}`));
+        .then(response.redirect(`/chipmunks/${ chipmunk.id }`));
     })
     .catch(console.log);
 });
 
+// destroy a chipmunk submission route - deletes a chipmunk and goes to index
+app.post('/chipmunks/destroy/:id', function(request, response) {
+  Chipmunk.findByIdAndDelete(request.params.id)
+    .then(response.redirect('/'))
+    .catch(console.log);
+});
+
 // start server
-app.listen(port, () => console.log(`chipmunk app listening on port ${port}`));
+app.listen(port, () => console.log(`chipmunk app listening on port ${ port }`));
