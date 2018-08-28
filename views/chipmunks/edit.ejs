@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit <%= chipmunk.name %>'s information</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <h1>Edit <%= chipmunk.name %></h1>
+        <ul>
+          <li><a href="/">Dashboard</a></li>
+          <li><a href="/chipmunks/<%= chipmunk.id %>">Details</a></li>
+        </ul>
+        <hr>
+      </nav>
+      <fieldset>
+        <legend>Edit a Chipmunk</legend>
+        <form action="/chipmunks/<%= chipmunk.id %>" method="post">
+          <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" value="<%= chipmunk.name %>">
+          </div>
+          <div>
+            <label for="age">Age</label>
+            <input type="number" name="age" value="<%= chipmunk.age %>">
+          </div>
+          <div>
+            <label for="favoriteNut">Favorite Nut</label>
+            <select name="favoriteNut">
+              <option value="Acorn"
+                <% if ( chipmunk.favoriteNut == 'Acorn' ) { %>selected<% } %>>
+                Acorn
+              </option>
+              <option value="Peanut"
+                <% if ( chipmunk.favoriteNut == 'Peanut' ) { %>selected<% } %>>
+                Peanut
+              </option>
+              <option value="Walnut"
+                <% if ( chipmunk.favoriteNut == 'Walnut' ) { %>selected<% } %>>
+                Walnut
+              </option>
+              <option value="Cashew"
+                <% if ( chipmunk.favoriteNut == 'Cashew' ) { %>selected<% } %>>
+                Cashew
+              </option>
+              <option value="Goofy"
+                <% if ( chipmunk.favoriteNut == 'Goofy' ) { %>selected<% } %>>
+                Goofy
+              </option>
+            </select>
+          </div>
+          <div>
+            <label for="treasure">Hidden Treasure</label>
+            <input type="text" name="treasure" value="<%= chipmunk.treasure %>">
+          </div>
+          <button>Update Chipmunk</button>
+        </form>
+      </fieldset>
+    </div>
+  </body>
+</html>

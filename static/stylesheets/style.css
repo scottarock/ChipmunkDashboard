@@ -20,8 +20,8 @@ nav ul {
 }
 
 nav ul li {
-  display: inline-block;
   float: left;
+  display: inline-block;
   background-color: whitesmoke;
   border: 1px solid gray;
   border-radius: 2px;
@@ -52,6 +52,7 @@ th, tr:nth-child(even) {
 fieldset {
   display: inline-block;
   padding: 15px 25px;
+  text-align: left;
 }
 
 label {
@@ -73,4 +74,21 @@ button {
   background-color: whitesmoke;
   border: 1px solid gray;
   border-radius: 4px;
+}
+
+span.tag {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+}
+
+span.field {
+  display: inline-block;
+  width: 300px;
+  margin: 5px 4px;
+  padding: 4px 12px;
+  text-align: left;
+  background-color: whitesmoke;
+  border: 1px solid gray;
+  border-radius: 2px;
 }

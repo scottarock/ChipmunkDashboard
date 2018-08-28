@@ -42,23 +42,52 @@ app.set('views', path.resolve('views'));
 app.use(express.static(path.resolve('static')));
 app.use(parser.urlencoded({ extended: true }));
 
-// routes
+// ROUTES
+// index page - shows table of all chipmunks
 app.get('/', function(request, response) {
   Chipmunk.find({})
     .then( chipmunks => {
-      console.log(chipmunks);
       response.render('index', { chipmunks });
     })
     .catch(console.log);
 });
 
+// add a chipmunk page - shows form to create a chipmunk
 app.get('/chipmunks/new', function(request, response) {
   response.render('chipmunks/new');
 });
 
+// add chipmunk submission route - creates new chipmunk and then goes to index
 app.post('/chipmunks', function(request, response) {
   Chipmunk.create(request.body)
     .then(chipmunk => response.redirect('/'))
+    .catch(console.log);  // TODO: add validation error handling
+});
+
+// show details about one chipmunk
+app.get('/chipmunks/:id', function(request, response) {
+  Chipmunk.findById(request.params.id)
+    .then(chipmunk => response.render('chipmunks/chipmunk', { chipmunk }))
+    .catch(console.log);
+});
+
+// edit a chipmunk page - shows form with information about chipmunk to edit
+app.get('/chipmunks/edit/:id', function(request, response) {
+  Chipmunk.findById(request.params.id)
+    .then(chipmunk => response.render('chipmunks/edit', { chipmunk }))
+    .catch(console.log);
+});
+
+app.post('/chipmunks/:id', function(request, response) {
+  Chipmunk.findById(request.params.id)
+    .then(chipmunk => {
+      Object.keys(request.body).forEach(key => {
+        chipmunk[key] = request.body[key];
+      });
+      console.log(chipmunk);
+      return chipmunk.save()
+        .then(response.redirect(`/chipmunks/${chipmunk.id}`));
+    })
     .catch(console.log);
 });
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Chipmunk: <%= chipmunk.name %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <h1>This is <%= chipmunk.name %>'s page</h1>
+        <ul>
+          <li><a href="/">Dashboard</a></li>
+          <li><a href="/chipmunks/edit/<%= chipmunk.id %>">Edit</a></li>
+        </ul>
+        <hr>
+      </nav>
+      <main>
+        <fieldset>
+          <div>
+            <span class="tag">Name</span>
+            <span class="field"><%= chipmunk.name %></span>
+          </div>
+          <div>
+            <span class="tag">Age</span>
+            <span class="field"><%= chipmunk.age %></span>
+          </div>
+          <div>
+            <span class="tag">Favorite Nut</span>
+            <span class="field"><%= chipmunk.favoriteNut %></span>
+          </div>
+          <div>
+            <span class="tag">Hidden Treasure</span>
+            <span class="field"><%= chipmunk.treasure %></span>
+          </div>
+        </fieldset>
+      </main>
+    </div>
+  </body>
+</html>
