@@ -6,6 +6,10 @@ const express = require('express'),
       { Schema } = mongoose,
       app = express();
 
+// variables for dealing with errors
+let errors = [],
+    data ={};
+
 mongoose.Promise = global.Promise;
 mongoose.connect(
   'mongodb://localhost/chipmunks',
@@ -17,17 +21,17 @@ mongoose.connection.on('connected', () => console.log('Mongo DB connected'));
 const chipmunkSchema = new Schema({
   name: {
     type: String,
-    required: [ true, 'A chipmunk needs a name' ],
+    required: [ true, 'A chipmunk needs a name!' ],
     trim: true,
   },
   age: {
     type: Number,
-    required: [ true, 'How old is this chipmunk' ],
+    required: [ true, 'How old is this chipmunk?' ],
   },
   favoriteNut: {
     type: String,
     trim: true,
-    default: 'acorn',
+    default: 'Acorn',
   },
   treasure: {
     type: String,
@@ -54,19 +58,20 @@ app.get('/', function(request, response) {
 
 // add a chipmunk page - shows form to create a chipmunk
 app.get('/chipmunks/new', function(request, response) {
-  // add handling for errors and entered data
-  // will also need to update view to show these
-  response.render('chipmunks/new');
+  response.render('chipmunks/new', { errors, data });
+  errors = [];
+  data = {};
 });
 
 // add chipmunk submission route - creates new chipmunk and then goes to index
 app.post('/chipmunks', function(request, response) {
   Chipmunk.create(request.body)
     .then(chipmunk => response.redirect(`/chipmunks/${ chipmunk.id }`))
-    // TODO: add validation error handling
-    // need to save error messages and data that was entered and
-    // redirect back to chipmunks/new route
-    .catch(console.log);
+    .catch(error => {
+      errors = Object.keys(error.errors).map(key => error.errors[key].message);
+      data = request.body;
+      response.redirect('/chipmunks/new')
+    });
 });
 
 // show details about one chipmunk
@@ -79,7 +84,10 @@ app.get('/chipmunks/:id', function(request, response) {
 // edit a chipmunk page - shows form with information about chipmunk to edit
 app.get('/chipmunks/edit/:id', function(request, response) {
   Chipmunk.findById(request.params.id)
-    .then(chipmunk => response.render('chipmunks/edit', { chipmunk }))
+    .then(chipmunk => {
+      response.render('chipmunks/edit', { errors, chipmunk });
+      errors = [];
+    })
     .catch(console.log);
 });
 
@@ -91,9 +99,14 @@ app.post('/chipmunks/:id', function(request, response) {
         chipmunk[key] = request.body[key];
       });
       return chipmunk.save()
-        .then(response.redirect(`/chipmunks/${ chipmunk.id }`));
+        .then(chipmunk => {
+          response.redirect(`/chipmunks/${ chipmunk.id }`);
+        })
     })
-    .catch(console.log);
+    .catch(error => {
+      errors = Object.keys(error.errors).map(key => error.errors[key].message);
+      response.redirect(`/chipmunks/edit/${ request.params.id }`)
+    });
 });
 
 // destroy a chipmunk submission route - deletes a chipmunk and goes to index

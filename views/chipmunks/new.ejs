@@ -19,26 +19,79 @@
         <form action="/chipmunks" method="post">
           <div>
             <label for="name">Name</label>
-            <input type="text" name="name">
+            <input type="text" name="name"
+              <% if ( data.name ) { %> value="<%= data.name %>" <% } %>
+            >
           </div>
           <div>
             <label for="age">Age</label>
-            <input type="number" name="age">
+            <input type="number" name="age"
+              <% if ( data.age ) { %> value="<%= data.age %>" <% } %>
+            >
           </div>
           <div>
             <label for="favoriteNut">Favorite Nut</label>
             <select name="favoriteNut">
-              <option value="Acorn">Acorn</option>
-              <option value="Peanut">Peanut</option>
-              <option value="Walnut">Walnut</option>
-              <option value="Cashew">Cashew</option>
-              <option value="Goofy">Goofy</option>
+              <option value="Acorn"
+                <% if ( data.favoriteNut ) {
+                  if ( data.favoriteNut === 'Acorn' ) { %>
+                    selected
+                  <% }
+                } %>
+              >
+                Acorn
+              </option>
+              <option value="Peanut"
+                <% if ( data.favoriteNut ) {
+                  if ( data.favoriteNut === 'Peanut' ) { %>
+                    selected
+                  <% }
+                } %>
+              >
+                Peanut
+              </option>
+              <option value="Walnut"
+                <% if ( data.favoriteNut ) {
+                  if ( data.favoriteNut === 'Walnut' ) { %>
+                    selected
+                  <% }
+                } %>
+              >
+                Walnut
+              </option>
+              <option value="Cashew"
+                <% if ( data.favoriteNut ) {
+                  if ( data.favoriteNut === 'Cashew' ) { %>
+                    selected
+                  <% }
+                } %>
+              >
+                Cashew
+              </option>
+              <option value="Goofy"
+                <% if ( data.favoriteNut ) {
+                  if ( data.favoriteNut === 'Goofy' ) { %>
+                    selected
+                  <% }
+                } %>
+              >
+                Goofy
+              </option>
             </select>
           </div>
           <div>
             <label for="treasure">Hidden Treasure</label>
-            <input type="text" name="treasure">
+            <input type="text" name="treasure"
+              <% if ( data.treasure ) { %> value="<%= data.treasure %>" <% } %>
+            >
           </div>
+          <% if ( errors.length > 0 ) { %>
+            <div class="warning">
+              <% for ( message of errors ) { %>
+                <p><%= message %></p>
+              <% } %>
+            </div>
+          <% } %>
           <button>Add Chiupmunk</button>
         </form>
       </fieldset>

@@ -114,3 +114,12 @@ span.field {
   border: 1px solid gray;
   border-radius: 2px;
 }
+
+div.warning {
+  margin-bottom: 10px;
+  padding-left: 150px;
+  color: red;
+  background-color: whitesmoke;
+  border: 1px solid gray;
+  border-radius: 2px;
+}

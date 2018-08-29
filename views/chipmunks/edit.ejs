@@ -55,6 +55,13 @@
             <label for="treasure">Hidden Treasure</label>
             <input type="text" name="treasure" value="<%= chipmunk.treasure %>">
           </div>
+          <% if ( errors.length > 0 )  { %>
+            <div class="warning">
+              <% for ( message of errors ) { %>
+                <p><%= message %></p>
+              <% } %>
+            </div>
+          <% } %>
           <button>Update Chipmunk</button>
         </form>
       </fieldset>
