@@ -2,11 +2,7 @@ const express = require('express'),
       parser = require('body-parser'),
       path = require('path'),
       port = process.env.PORT || 8000,
-      mongoose = require('mongoose'),
-      { Schema } = mongoose,
       app = express();
-
-
 
 // server set up
 app.set('view engine', 'ejs');
